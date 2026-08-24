@@ -115,7 +115,7 @@ Normalize our dataset.
 8. Finally, call the functions confusion_matrix(), and the classification_report() in order to evaluate the performance of our classifier.
 
 <H3>Program:</H3> 
-~~~
+```
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -202,8 +202,7 @@ print("-" * 55)
 print(classification_report(y_test, y_pred))
 
 print("\n" + "=" * 55)
-~~~
-
+```
 <H3>Output:</H3>
 
 ![alt text](<Screenshot 2026-08-24 114250.png>) 
