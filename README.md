@@ -186,6 +186,7 @@ print("-" * 55)
 print(classification_report(y_test, y_pred))
 print("\n" + "=" * 55)
 ~~~
+
 <H3>Output:</H3>
 
 ![alt text](<Screenshot 2026-08-24 114250.png>) 
