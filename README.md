@@ -1,8 +1,8 @@
 
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>ENTER YOUR NAME:HEMALATHA V</H3>
+<H3>ENTER YOUR REGISTER NO.212225230099</H3>
 <H3>EX. NO.4</H3>
-<H3>DATE:</H3>
+<H3>DATE:24.08.2026</H3>
 <H1 ALIGN =CENTER>Implementation of MLP with Backpropagation for Multiclassification</H1>
 <H3>Aim:</H3>
 To implement a Multilayer Perceptron for Multi classification
@@ -115,12 +115,81 @@ Normalize our dataset.
 8. Finally, call the functions confusion_matrix(), and the classification_report() in order to evaluate the performance of our classifier.
 
 <H3>Program:</H3> 
-
-Insert your code here
-
+~~~
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neural_network import MLPClassifier
+from sklearn.metrics import confusion_matrix, classification_report
+from sklearn.metrics import accuracy_score
+# Load dataset
+data = pd.read_csv("customer_segmentation_mlp.csv")
+# Separate input and output
+X = data.iloc[:, 0:6]
+y = data.iloc[:, -1]
+# Split dataset
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.20, random_state=42
+)
+# Normalize dataset
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+# Create MLP classifier
+mlp = MLPClassifier(
+    hidden_layer_sizes=(12, 8),
+    activation='relu',
+    max_iter=1000,
+    random_state=42
+)
+# Train the model
+mlp.fit(X_train, y_train)
+# Predict test data
+y_pred = mlp.predict(X_test)
+# Calculate accuracy
+accuracy = accuracy_score(y_test, y_pred)
+# Display output
+print("\nMLP WITH BACKPROPAGATION")
+print("MULTICLASS CLASSIFICATION")
+print("=" * 55)
+print("\n1. DATASET INFORMATION")
+print("-" * 55)
+print("Total Records          :", len(data))
+print("Training Records       :", len(X_train))
+print("Testing Records        :", len(X_test))
+print("Input Features         :", X.shape[1])
+print("Output Classes         :", y.nunique())
+print("\n2. MLP MODEL")
+print("-" * 55)
+print("Hidden Layers          : 12, 8")
+print("Activation Function    : ReLU")
+print("Learning Algorithm     : Backpropagation")
+print("Maximum Iterations     : 1000")
+print("\n3. PERFORMANCE")
+print("-" * 55)
+print("Accuracy               : {:.2f}%".format(accuracy * 100))
+print("\n4. PREDICTION RESULTS")
+print("-" * 55)
+print("{:<10} {:<15} {:<15}".format(
+    "Sample", "Actual", "Predicted"
+))
+print("-" * 55)
+for i, (actual, predicted) in enumerate(zip(y_test, y_pred), 1):
+    print("{:<10} {:<15} {:<15}".format(
+        i, actual, predicted
+    ))
+print("\n5. CONFUSION MATRIX")
+print("-" * 55)
+print(confusion_matrix(y_test, y_pred))
+print("\n6. CLASSIFICATION REPORT")
+print("-" * 55)
+print(classification_report(y_test, y_pred))
+print("\n" + "=" * 55)
+~~~
 <H3>Output:</H3>
 
-Show your results here
+![alt text](<Screenshot 2026-08-24 114250.png>) 
+![alt text](<Screenshot 2026-08-24 114241.png>)
 
 <H3>Result:</H3>
 Thus, MLP is implemented for multi-classification using python.
